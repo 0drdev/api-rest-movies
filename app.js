@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 1234
 // Disable header x-powered-by Express
 app.disable('x-powered-by')
 
-app.use(express.json()) // Para manejar JSON en el cuerpo de la solicitud
+app.use(express.json()) // To handle JSON in the request body
+
+// Main route
+app.get('/', (req, res) => {
+  res.send('<h1>API Movies</h1>')
+})
 
 // Rutas de tu API
 app.get('/movies', (req, res, next) => {
@@ -19,13 +24,13 @@ app.get('/movies', (req, res, next) => {
     const data = JSON.stringify(movies)
     res.status(200).send(data)
   } catch (error) {
-    next(new ConnectionError('No data available')) // Usar error personalizado
+    next(new ConnectionError('No data available')) // Use custom error
   }
 })
 
 app.get('/movies/:id', (req, res, next) => {
   const movie = movies.find((movie) => movie.id == req.params.id)
-  if (!movie) return next(new ValidationMovie('Movie not found')) // Usar error personalizado
+  if (!movie) return next(new ValidationMovie('Movie not found')) // Use custom error
   res.json(movie)
 })
 
@@ -42,9 +47,9 @@ app.post('/movies', (req, res, next) => {
       rate: req.body.rate ? req.body.rate : 7.8
     }
     movies.push(newMovie)
-    res.status(201).send(newMovie) // Cambié el código de estado a 201 para crear recursos
+    res.status(201).send(newMovie) // status 201 create resource
   } catch (error) {
-    next(new ConnectionError('Failed to create movie')) // Usar error personalizado
+    next(new ConnectionError('Failed to create movie')) // Use custom error
   }
 })
 
@@ -56,7 +61,7 @@ app.put('/movies/:id', (req, res, next) => {
     const movieIndex = movies.findIndex((movie) => movie.id == id)
 
     if (movieIndex === -1) {
-      return next(new ValidationMovie('The movie cannot be updated')) // Usar error personalizado
+      return next(new ValidationMovie('The movie cannot be updated')) // Use custom error
     }
     // Actualizar película
     movies[movieIndex] = {
@@ -64,9 +69,9 @@ app.put('/movies/:id', (req, res, next) => {
       ...updatedMovie
     }
 
-    return res.status(200).json(movies[movieIndex]) // Cambié el código de estado a 200
+    return res.status(200).json(movies[movieIndex]) // status 200 if the resource is updated
   } catch (error) {
-    next(new ConnectionError('Failed to update movie')) // Usar error personalizado
+    next(new ConnectionError('Failed to update movie')) // Use custom error
   }
 })
 
@@ -76,14 +81,14 @@ app.delete('/movies/:id', (req, res, next) => {
     const movieIndex = movies.findIndex((movie) => movie.id == id)
 
     if (movieIndex === -1) {
-      return next(new ValidationMovie('Movie not found')) // Usar error personalizado
+      return next(new ValidationMovie('Movie not found')) // Use custom error
     }
     // Eliminar película
     movies.splice(movieIndex, 1)
 
     return res.status(200).json({ message: 'Movie deleted' })
   } catch (error) {
-    next(new ConnectionError('Failed to delete movie')) // Usar error personalizado
+    next(new ConnectionError('Failed to delete movie')) // Use custom error
   }
 })
 
