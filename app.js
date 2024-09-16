@@ -6,6 +6,9 @@ const movies = require('./movies.json')
 //Get the value this PORT in enviroment variables or usage PORT 3000
 const PORT = process.env.PORT || 3000
 
+// Disable header x-powered-by Express
+app.disable('x-powered-by')
+
 app.use(express.json()) // Para manejar JSON en el cuerpo de la solicitud
 
 app.get('/movies', (req, res) => {
@@ -18,7 +21,7 @@ app.get('/movies', (req, res) => {
 //Obtener movie por id
 app.get('/movies/:id', (req, res) => {
   const movie = movies.find((movie) => movie.id == req.params.id)
-  if (!movie) return res.status(404).send('Libro no encontrado')
+  if (!movie) return res.status(404).send('Movie not found')
   res.json(movie)
 })
 
@@ -39,8 +42,34 @@ app.post('/movies', (req, res) => {
 })
 
 //Update a movie
+app.put('/movies/:id', (req, res) => {
+  const { id } = req.params
+  const { title, year, director, duration, poster, genre } = req.params
+
+  const movieIndex = movies.findIndex((movie) => movie.id === id)
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: 'the movie cannot be updated ' })
+  }
+
+  return res.status(200).json({ message: 'Movie is update' })
+})
 
 //Delete movie
+app.delete('/movies/:id', (req, res) => {
+  const { id } = req.params
+  // Find id the mive
+  const movieIndex = movies.findIndex((movie) => movie.id === id)
+
+  // If not a movie
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: '404 Movie not found' })
+  }
+  // Delete first movie
+  movies.splice(movieIndex, 1)
+
+  return res.status(200).json({ message: 'Movie deleted' })
+})
 
 app.listen(PORT, () => {
   console.log(`App listening on port http://localhost:${PORT}`)

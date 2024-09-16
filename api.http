@@ -4,7 +4,7 @@ http://localhost:3000/movies
 ### Get a movie
 http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 
-### Crear una película con POST
+### CCreate movie POST
 POST http://localhost:3000/movies
 Content-Type: application/json
 
@@ -19,3 +19,12 @@ Content-Type: application/json
     "Drama"
   ]
 }
+
+### Update movie
+PUT  http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+
+### Delete movie
+DELETE http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
