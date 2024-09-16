@@ -4,7 +4,7 @@ http://localhost:3000/movies
 ### Get a movie
 http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 
-### CCreate movie POST
+### Create movie POST
 POST http://localhost:3000/movies
 Content-Type: application/json
 
@@ -23,6 +23,10 @@ Content-Type: application/json
 ### Update movie
 PUT  http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 Content-Type: application/json
+
+{
+  "title": "DR"
+}
 
 
 ### Delete movie

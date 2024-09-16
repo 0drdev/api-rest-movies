@@ -41,18 +41,23 @@ app.post('/movies', (req, res) => {
   res.status(200).send(newMovie)
 })
 
-//Update a movie
+//Method Update a movie
 app.put('/movies/:id', (req, res) => {
   const { id } = req.params
-  const { title, year, director, duration, poster, genre } = req.params
+  const updatedMovie = req.body
 
   const movieIndex = movies.findIndex((movie) => movie.id === id)
 
   if (movieIndex === -1) {
     return res.status(404).json({ message: 'the movie cannot be updated ' })
   }
+  // Update movie
+  movies[movieIndex] = {
+    ...movies[movieIndex],
+    ...updatedMovie
+  }
 
-  return res.status(200).json({ message: 'Movie is update' })
+  return res.status(201).json(movies[movieIndex])
 })
 
 //Delete movie
