@@ -1,21 +1,19 @@
 # API REST de Películas
 
-Bienvenido a la API REST de Películas, un proyecto para gestionar una base de datos de películas utilizando Node.js, Express y MySQL. Esta API proporciona funcionalidades completas para crear, leer, actualizar y eliminar películas.
+Bienvenido a la API REST de Películas, un proyecto para gestionar una base de datos de películas utilizando Node.js, Express. Esta API proporciona funcionalidades completas para crear, leer, actualizar y eliminar películas.
 
 ## Características
 
-- **Obtener todas las películas:** Accede a una lista de todas las películas en la base de datos.
+- **Obtener todas las películas:** Accede a una lista de todas las películas.
 - **Obtener película por ID:** Consulta los detalles de una película específica usando su ID.
-- **Crear una nueva película:** Añade una nueva película a la base de datos con todos sus detalles.
+- **Crear una nueva película:** Añade una nueva con todos sus detalles.
 - **Actualizar una película existente:** Modifica la información de una película existente.
-- **Eliminar una película:** Elimina una película de la base de datos por su ID.
+- **Eliminar una película:** Elimina una película por su ID.
 
 ## Tecnologías Utilizadas
 
 - **Node.js:** Plataforma de JavaScript para construir aplicaciones de red escalables.
 - **Express:** Framework minimalista para Node.js que facilita la creación de APIs RESTful.
-- **Zod:** Biblioteca para la validación de datos de entrada utilizando esquemas.
-- **MySQL:** Sistema de gestión de bases de datos relacional (en desarrollo futuro).
 
 ## Instalación
 
